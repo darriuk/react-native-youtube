@@ -108,8 +108,8 @@ export default class YouTube extends React.Component {
     // changes to force a real render on it so it will smoothly appear after ready and show
     // controls. We also use the minimal margin to avoid `UNAUTHORIZED_OVERLAY` error from the
     // native module that is very sensitive to being covered or even touching its containing view.
-    setTimeout(() => {
-      this._onReadyTimeout = this.setState({ moduleMargin: StyleSheet.hairlineWidth });
+    this._onReadyTimeout = setTimeout(() => {
+      this.setState({ moduleMargin: StyleSheet.hairlineWidth });
     }, 250);
     if (this.props.onReady) this.props.onReady(event.nativeEvent);
   };
