@@ -54,6 +54,7 @@ export default class YouTube extends React.Component {
   };
 
   _interval = null;
+  _onReadyTimeout = null;
 
   constructor(props) {
     super(props);
@@ -83,6 +84,7 @@ export default class YouTube extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this._interval);
+    clearTimeout(this._onReadyTimeout);
     BackHandler.removeEventListener('hardwareBackPress', this._backPress);
   }
 
@@ -107,7 +109,7 @@ export default class YouTube extends React.Component {
     // controls. We also use the minimal margin to avoid `UNAUTHORIZED_OVERLAY` error from the
     // native module that is very sensitive to being covered or even touching its containing view.
     setTimeout(() => {
-      this.setState({ moduleMargin: StyleSheet.hairlineWidth });
+      this._onReadyTimeout = this.setState({ moduleMargin: StyleSheet.hairlineWidth });
     }, 250);
     if (this.props.onReady) this.props.onReady(event.nativeEvent);
   };
