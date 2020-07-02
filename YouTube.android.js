@@ -82,6 +82,7 @@ export default class YouTube extends React.Component {
   }
 
   componentWillUnmount() {
+    clearInterval(this._interval);
     BackHandler.removeEventListener('hardwareBackPress', this._backPress);
   }
 
