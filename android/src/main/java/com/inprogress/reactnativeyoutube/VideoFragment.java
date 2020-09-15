@@ -7,6 +7,8 @@ public class VideoFragment extends YouTubePlayerFragment {
 
     private YouTubeView mYouTubeView;
 
+	public VideoFragment() {}
+
     public VideoFragment(YouTubeView youTubeView) {
         mYouTubeView = youTubeView;
     }
@@ -17,7 +19,9 @@ public class VideoFragment extends YouTubePlayerFragment {
 
     @Override
     public void onResume() {
-        mYouTubeView.onVideoFragmentResume();
-        super.onResume();
+		if (mYouTubeView != null) {
+			mYouTubeView.onVideoFragmentResume();
+		}
+		super.onResume();
     }
 }
